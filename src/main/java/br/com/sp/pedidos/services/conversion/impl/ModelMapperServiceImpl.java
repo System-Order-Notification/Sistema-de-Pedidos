@@ -3,6 +3,7 @@ package br.com.sp.pedidos.services.conversion.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import br.com.sp.pedidoDTOS.input.InputPedidoDTO;
 import br.com.sp.pedidoDTOS.output.OutputPedidoDTO;
 import br.com.sp.pedidos.domain.pedido.Pedido;
 import br.com.sp.pedidos.services.conversion.ModelMapperService;
@@ -20,6 +21,11 @@ public class ModelMapperServiceImpl implements ModelMapperService{
 	@Override
 	public OutputPedidoDTO convertPedidoToPedidoDTO(Pedido pedido) {
 		return modelMapper.map(pedido, OutputPedidoDTO.class);
+	}
+	
+	@Override
+	public Pedido convertInputPedidoToPedido(InputPedidoDTO pedidoDTO) {
+		return modelMapper.map(pedidoDTO, Pedido.class);
 	}
 
 }

@@ -6,7 +6,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.sp.pedidoDTOS.input.InputPedidoDTO;
 import br.com.sp.pedidoDTOS.output.OutputPedidoDTO;
+import br.com.sp.pedidos.domain.pedido.Pedido;
 import br.com.sp.pedidos.repositories.PedidoRepository;
 import br.com.sp.pedidos.services.PedidoService;
 import br.com.sp.pedidos.services.conversion.ModelMapperService;
@@ -42,6 +44,15 @@ public class PedidoServiceImpl implements PedidoService{
 		Page<OutputPedidoDTO> list = pedidoRepository.listMyOrders(pageable, userID).map(pedido -> modelMapperService.convertPedidoToPedidoDTO(pedido));
 		
 		return list;
+	}
+	
+	@Override
+	public OutputPedidoDTO save(InputPedidoDTO pedidoDTO) {
+		Pedido pedido = modelMapperService.convertInputPedidoToPedido(pedidoDTO);
+		
+		
+		OutputPedidoDTO dto = modelMapperService.convertPedidoToPedidoDTO(pedido);
+		return dto;
 	}
 
 }
