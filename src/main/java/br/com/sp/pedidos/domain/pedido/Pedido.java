@@ -40,10 +40,11 @@ public class Pedido {
 	
 	public Pedido() {
 		this.actived = true;
+		this.dataHora = LocalDateTime.now();
 	}
 
 	public Pedido(UUID userID, String descricao, Float valorTotal, Float valorFrete,
-			Float valorTotalGeral, MetodoPagamento metodoPagamento,  List<PedidoItem> itens) {
+			Float valorTotalGeral, MetodoPagamento metodoPagamento) {
 		super();
 		this.userID = userID;
 		this.dataHora = LocalDateTime.now();
@@ -53,7 +54,6 @@ public class Pedido {
 		this.valorTotalGeral = valorTotalGeral;
 		this.metodoPagamento = metodoPagamento;
 		this.actived = true;
-		this.itens = itens;
 	}
  
 	public UUID getId() {

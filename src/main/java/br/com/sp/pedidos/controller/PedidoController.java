@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.sp.pedidoDTOS.input.InputPedidoDTO;
 import br.com.sp.pedidoDTOS.output.OutputPedidoDTO;
 import br.com.sp.pedidos.services.PedidoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/pedidos")
@@ -46,14 +47,14 @@ public class PedidoController {
 	}
 	
 	@PostMapping("/save")
-	public ResponseEntity<OutputPedidoDTO> save(@RequestBody InputPedidoDTO pedidoDTO, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<OutputPedidoDTO> save(@RequestBody @Valid InputPedidoDTO pedidoDTO, UriComponentsBuilder uriBuilder) {
 		OutputPedidoDTO outputPedidoDTO = pedidoService.save(pedidoDTO);
 		
 		URI uri = uriBuilder.path("/api/pedidos/listMyOrders/{userID}").buildAndExpand(outputPedidoDTO.getUsuario().getId()).toUri();
 		return ResponseEntity.created(uri).body(outputPedidoDTO);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping("/delete")
 	public void delete() {
 		
 	}

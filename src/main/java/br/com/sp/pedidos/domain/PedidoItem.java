@@ -1,5 +1,6 @@
 package br.com.sp.pedidos.domain;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import br.com.sp.pedidos.domain.pedido.Pedido;
@@ -16,10 +17,11 @@ public class PedidoItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	private String nome;
 	private String nomeEmpresa;
 	private Float valorUnitario;
 	private Integer quantidade;
-	private String dataEntrega;
+	private LocalDate dataEntrega;
 	
 	@ManyToOne()
 	private Pedido pedido;
@@ -28,21 +30,20 @@ public class PedidoItem {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PedidoItem(String nomeEmpresa, Float valorUnitario, Integer quantidade, String dataEntrega, Pedido pedido) {
-		super();
-		this.nomeEmpresa = nomeEmpresa;
-		this.valorUnitario = valorUnitario;
-		this.quantidade = quantidade;
-		this.dataEntrega = dataEntrega;
-		this.pedido = pedido;
-	}
-
 	public UUID getId() {
 		return id;
 	}
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getNomeEmpresa() {
@@ -69,11 +70,11 @@ public class PedidoItem {
 		this.quantidade = quantidade;
 	}
 
-	public String getDataEntrega() {
+	public LocalDate getDataEntrega() {
 		return dataEntrega;
 	}
 
-	public void setDataEntrega(String dataEntrega) {
+	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
 
